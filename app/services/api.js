@@ -1,10 +1,23 @@
+import {
+  AsyncStorage
+} from 'react-native';
+
 class Http {
+
+  async getprofile() {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      return value.replace(/"/g, '');
+    } catch (error) {
+      // Handle errors here
+    }
+  }
+
   getUrl() {
     return 'http://myrealtime.com.au:8080';
   }
 
   async login(username, password) {
-    console.log(username, password)
     try {
       let response = await fetch(`${this.getUrl()}/authenticate/login`, {
         method: 'POST',
@@ -25,7 +38,27 @@ class Http {
         error: true
       }
     } catch(error) {
-      // alert(error)
+      return {error};
+    }
+  }
+
+  async getExternal() {
+    try {
+
+      let token = await this.getprofile();
+
+      let response = await fetch(`${this.getUrl()}/api/externalUsers/allExternalUsers`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Auth-Token': token
+        }
+      })
+
+      let responseJson = await response.json();
+      return responseJson;
+
+    } catch(error) {
       return {error};
     }
   }
