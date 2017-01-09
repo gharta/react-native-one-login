@@ -88,11 +88,8 @@ export default class LoginPage extends Component {
 
               if (!result.error) {
                 if (result.token != null) {
-                  // service.getExternal().then((result) => {
-                  //   console.log(result)
-                  // })
+                  Actions.ListsExternalPage();
                   this.setStorage(JSON.stringify(result.token[0])).then((stored) => {
-                    // Actions.homePage();
                   }).catch((e) => {})
 
                 }else {
