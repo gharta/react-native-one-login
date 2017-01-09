@@ -3,19 +3,21 @@ import {
   View,
   Alert,
   Image,
-  ScrollView
+  ScrollView,
+  Keyboard
 } from 'react-native';
 import service from './../services/api';
 import { Actions } from 'react-native-router-flux';
 import CardImage from './internal_components/cardWithImage';
+import RTLoader from './internal_components/loader';
 import styles from './../styles/App';
 
 export default class ListsExternalPage extends Component {
   constructor(props) {
     super(props);
-
+    Keyboard.dismiss();
     this.state = {
-      externalUsers:[]
+      externalUsers:null
     };
   }
 
@@ -53,6 +55,13 @@ export default class ListsExternalPage extends Component {
   }
 
   render () {
+
+    if (!this.state.externalUsers) {
+      return (<Image source={ require('./../../background.jpg') } style={styles.containerContent}>
+                <RTLoader />
+              </Image>);
+    }
+
     return (
     <Image source={ require('./../../background.jpg') } style={styles.containerContent}>
       <ScrollView>
