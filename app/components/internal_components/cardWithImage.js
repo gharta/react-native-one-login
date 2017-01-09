@@ -13,24 +13,28 @@ export default class CardImage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data : props.data || ''
+    };
   }
 
   componentWillReceiveProps(props) {
-    this.setState({});
+    this.setState({
+      data : props.data || ''
+    });
   }
 
   render() {
     return (
       <View style={styles.card} ref={component => this._root = component} {...this.props}>
 
-        <Image style={styles.imageCircle} source={{uri: 'http://placehold.it/100x100'}}/>
+        <Image style={styles.imageCircle} source={{uri: this.state.data.image}}/>
 
         <Button
           style={[StyleButton.Yellow, {marginTop:10}]}
           textStyle={stylesApp.buttonTextStyle}
           onPress={() => { }}>
-          GO TO APP
+          {this.state.data.name}
         </Button>
       </View>)
   }
@@ -46,6 +50,9 @@ var styles = StyleSheet.create({
     borderRadius:5
   },
   imageCircle: {
-    height: 130
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
   }
 });

@@ -34,8 +34,8 @@
          }
        }}>
          <Scene key="root">
-           <Scene key="LoginPage" hideNavBar={true} component={LoginPage} />
-           <Scene key="ListsExternalPage" initial={true} hideNavBar={true} component={ListsExternalPage} />
+           <Scene key="LoginPage" initial={true} hideNavBar={true} component={LoginPage} />
+           <Scene key="ListsExternalPage" hideNavBar={true} component={ListsExternalPage} />
          </Scene>
        </Router>
      );

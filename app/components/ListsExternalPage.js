@@ -15,6 +15,7 @@ export default class ListsExternalPage extends Component {
     super(props);
 
     this.state = {
+      externalUsers:[]
     };
   }
 
@@ -28,11 +29,24 @@ export default class ListsExternalPage extends Component {
     )
   }
 
+  componentWillMount() {
+    this.getExternalUsers().done();
+  }
+
+  async getExternalUsers() {
+    const externalUsers = await service.getExternal();
+    this.setState({
+      externalUsers
+    });
+    return true;
+  }
+
   renderCards() {
     var list = [];
 
-    for (var i = 0; i < 10; i++) {
-      list.push(<CardImage key={i}/>)
+    for (var i = 0; i < this.state.externalUsers.length ; i++) {
+      const externalSystem = this.state.externalUsers[i].externalSystem;
+      list.push(<CardImage key={i} data={externalSystem} />)
     }
 
     return list
