@@ -14,13 +14,15 @@ export default class CardImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data : props.data || ''
+      data : props.data || '',
+      button: props.button ||  null
     };
   }
 
   componentWillReceiveProps(props) {
     this.setState({
-      data : props.data || ''
+      data : props.data || '',
+      button: props.button ||  null
     });
   }
 
@@ -33,7 +35,7 @@ export default class CardImage extends Component {
         <Button
           style={[StyleButton.Yellow, {marginTop:10}]}
           textStyle={stylesApp.buttonTextStyle}
-          onPress={() => { }}>
+          onPress={this.state.button}>
           {this.state.data.name}
         </Button>
       </View>)

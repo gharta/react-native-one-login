@@ -47,8 +47,15 @@ export default class ListsExternalPage extends Component {
     var list = [];
 
     for (var i = 0; i < this.state.externalUsers.length ; i++) {
-      const externalSystem = this.state.externalUsers[i].externalSystem;
-      list.push(<CardImage key={i} data={externalSystem} />)
+      let externalSystem = this.state.externalUsers[i].externalSystem;
+      const externalUser = this.state.externalUsers[i];
+
+      externalSystem.username = externalUser.username;
+      externalSystem.password = externalUser.password;
+
+      list.push(<CardImage key={i} data={externalSystem} button={() => {
+        Actions.WebViewPage(externalSystem)
+      }} />)
     }
 
     return list
