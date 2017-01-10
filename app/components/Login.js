@@ -59,7 +59,19 @@ export default class LoginPage extends Component {
 
           </Text>
 
-         <Text style={[styles.textColor, {marginTop:80}]}>Email</Text>
+          <View style={{ height:200 }}>
+            <Image
+            style={{
+              flex: 1,
+              width: null,
+              height: null,
+              resizeMode: 'contain'
+            }}
+            source={{uri: 'http://myrealtime.com.au/images/icon-myrealtimelogo.png'}}
+            />
+          </View>
+
+         <Text style={[styles.textColor]}>Email</Text>
 
          <TextInput
            style={[{height: 40, borderWidth: 1},styles.textColor]}
@@ -79,7 +91,7 @@ export default class LoginPage extends Component {
          />
 
          <Button
-           style={StyleButton.Yellow}
+           style={[StyleButton.Yellow, {marginTop:40}]}
            isLoading={this.state.isLoadingLogin}
            textStyle={styles.buttonTextStyle}
            onPress={() => {
@@ -88,8 +100,8 @@ export default class LoginPage extends Component {
 
               if (!result.error) {
                 if (result.token != null) {
-                  Actions.ListsExternalPage();
                   this.setStorage(JSON.stringify(result.token[0])).then((stored) => {
+                    Actions.ListsExternalPage();
                   }).catch((e) => {})
 
                 }else {

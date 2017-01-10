@@ -11,9 +11,9 @@ export default class RTWebView extends Component {
       objectIdentifier: {
         username: props.username,
         password: props.password,
-        usernameIdentifier: props.usernameIdentifier,
-        passwordIdentifier: props.passwordIdentifier,
-        submitIdentifier: props.submitIdentifier
+        usernameIdentifier: props.mobileUsername,
+        passwordIdentifier: props.mobilePassword,
+        submitIdentifier: props.mobileSubmit
       }
     };
   }
