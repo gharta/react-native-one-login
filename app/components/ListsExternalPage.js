@@ -42,7 +42,6 @@ export default class ListsExternalPage extends Component {
   async getExternalUsers() {
     const externalUsers = await service.getExternal();
 
-    console.log(externalUsers)
 
     this.setState({
       externalUsers

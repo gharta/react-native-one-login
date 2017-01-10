@@ -8,7 +8,8 @@ import {
   Alert,
   Image,
   AsyncStorage,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import Button from 'apsl-react-native-button';
 import styles from './../styles/App';
@@ -51,7 +52,7 @@ export default class LoginPage extends Component {
   render () {
     return (
     <Image source={ require('./../../background.jpg') } style={styles.containerContent}>
-      <View style={[styles.panelBodyHomeScreen]}>
+      <ScrollView style={[styles.panelBodyHomeScreen]}>
           <Text style={styles.textHeading1}>
             myrealtime
           </Text>
@@ -67,7 +68,7 @@ export default class LoginPage extends Component {
               height: null,
               resizeMode: 'contain'
             }}
-            source={{uri: 'http://myrealtime.com.au/images/icon-myrealtimelogo.png'}}
+            source={require('./../../icon-myrealtimelogo.png')}
             />
           </View>
 
@@ -120,7 +121,7 @@ export default class LoginPage extends Component {
            LOGIN
          </Button>
 
-      </View>
+      </ScrollView>
     </Image>
     )
   }

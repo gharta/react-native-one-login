@@ -5,15 +5,15 @@ export default class RTWebView extends Component {
   constructor(props) {
     super(props);
 
-    // console.log(props)
+    console.log(props)
     this.state = {
       loginUrl:props.loginPageUrl,
       objectIdentifier: {
         username: props.username,
         password: props.password,
-        usernameIdentifier: props.mobileUsername,
-        passwordIdentifier: props.mobilePassword,
-        submitIdentifier: props.mobileSubmit
+        usernameIdentifier: props.mobileUsername || '',
+        passwordIdentifier: props.mobilePassword || '',
+        submitIdentifier: props.mobileSubmit || ''
       }
     };
   }
