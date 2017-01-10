@@ -75,7 +75,7 @@ export default class LoginPage extends Component {
          <Text style={[styles.textColor]}>Email</Text>
 
          <TextInput
-           style={[{height: 40, borderWidth: 1},styles.textColor]}
+           style={[ {height: 40, borderWidth: 1}, styles.textColor]}
            value={this.state.user}
            underlineColorAndroid='#eff0f1'
            onChangeText={user => this.setState({user})}
