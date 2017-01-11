@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { WebView } from 'react-native';
+import { WebView , View } from 'react-native';
+import Button from 'apsl-react-native-button';
+import StyleButton from './../styles/StyleButton';
+import styles from './../styles/App';
+const WEBVIEW_REF = "WEBVIEW_REF";
 
 export default class RTWebView extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props)
     this.state = {
       loginUrl:props.loginPageUrl,
       objectIdentifier: {
@@ -14,7 +17,8 @@ export default class RTWebView extends Component {
         usernameIdentifier: props.mobileUsername || '',
         passwordIdentifier: props.mobilePassword || '',
         submitIdentifier: props.mobileSubmit || ''
-      }
+      },
+      canGoBack: false
     };
   }
 
@@ -77,14 +81,38 @@ export default class RTWebView extends Component {
     return this.buildReturnScript(objectIdentifier);
   }
 
+  onBack() {
+    this.refs[WEBVIEW_REF].goBack();
+  }
+
+  onNavigationStateChange(navState) {
+    this.setState({
+      canGoBack: navState.canGoBack
+    });
+  }
+
   render() {
     return (
-      <WebView
-        source={{uri: this.state.loginUrl}}
-        injectedJavaScript={this.getInJectedScript(this.state.objectIdentifier)}
-        javaScriptEnabledAndroid={true}
-        scalesPageToFit={true}
-      />
+      <View style={{ flex: 1, height:null }}>
+        <WebView
+          source={{uri: this.state.loginUrl}}
+          injectedJavaScript={this.getInJectedScript(this.state.objectIdentifier)}
+          javaScriptEnabledAndroid={true}
+          scalesPageToFit={true}
+          ref={WEBVIEW_REF}
+          onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+        />
+
+        <Button
+          style={[StyleButton.Yellow, {marginLeft:100, marginRight:100}]}
+          isLoading={this.state.isLoadingLogout}
+          textStyle={styles.buttonTextStyle}
+          onPress={this.onBack.bind(this)}
+          isDisabled={!this.state.canGoBack}>
+          BACK
+        </Button>
+
+      </View>
     );
   }
 }

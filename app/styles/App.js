@@ -1,4 +1,24 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+var dimension = Dimensions.get('window');
+
+if (dimension.width < 650) {
+  var containerStyle = {
+    flex: 1,
+    padding:15,
+    width:null,
+    height:null
+  }
+}else {
+  var containerStyle = {
+    flex: 1,
+    padding:15,
+    paddingRight: ((dimension.width - 650) / 2),
+    paddingLeft: ((dimension.width - 650) / 2),
+    width:null,
+    height:null
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -8,12 +28,7 @@ const styles = StyleSheet.create({
     width:null,
     height:null
   },
-  containerContent: {
-    flex: 1,
-    padding:15,
-    width:null,
-    height:null
-  },
+  containerContent: containerStyle,
   containerContentWithoutPadding: {
     flex: 1,
     width:null,
